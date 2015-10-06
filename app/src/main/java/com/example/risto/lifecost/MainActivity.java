@@ -1,12 +1,18 @@
 package com.example.risto.lifecost;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import sqlite.helper.DatabaseHelper;
+import sqlite.model.MainCategory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,23 +20,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        MainCategory mainCategory = new MainCategory(0, "kartul");
+        db.createMainCategory(0, "kartul");
+        db.createMainCategory(1, "sibul");
+
+
+        TextView tvName = (TextView)findViewById(R.id.textView);
+        tvName.setText(db.getAllMainCategories().toString());
 
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.out.println("clicked");
+                Intent myIntent = new Intent(v.getContext(), addProductActivity.class);
+                startActivity(myIntent);
+
+
             }
             // Perform action on click
         });
 
-        final Button buttonAmort = (Button) findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(myIntent);
-            }
-            // Perform action on click
-        });
     }
 
     @Override

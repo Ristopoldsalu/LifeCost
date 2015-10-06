@@ -5,4 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_main22">Main22Activity</string>
+
+    <string name="add_product">Lihatoode</string>
+    <string name="add_product2">Nisutoode</string>
+    <string name="add_product3">Puuvili</string>
+    <string name="add_product4">Juurvili</string>
+    <string name="add_product5">Hügieen</string>
+    <string name="add_product6">Olme</string>
 </resources>
