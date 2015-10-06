@@ -1,5 +1,6 @@
 package com.example.risto.lifecost;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.out.println("clicked");
+            }
+            // Perform action on click
+        });
+
+        final Button buttonAmort = (Button) findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myIntent = new Intent(getApplicationContext(), Main2Activity.class);
+                startActivity(myIntent);
             }
             // Perform action on click
         });
