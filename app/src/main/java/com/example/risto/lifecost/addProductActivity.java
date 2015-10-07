@@ -1,10 +1,14 @@
 package com.example.risto.lifecost;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -12,6 +16,7 @@ import java.util.List;
 
 import sqlite.helper.DatabaseHelper;
 import sqlite.model.MainCategory;
+import sqlite.model.Product;
 
 public class addProductActivity extends Activity {
 
@@ -24,6 +29,33 @@ public class addProductActivity extends Activity {
         db = new DatabaseHelper(this);
         System.out.println("creatib asja");
         fillData();
+
+
+        final Button button = (Button) findViewById(R.id.button5);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("clicked");
+
+                EditText productName = (EditText)findViewById(R.id.editText);
+                EditText costField = (EditText)findViewById(R.id.editText2);
+                double cost = Double.parseDouble(costField.getText().toString());
+                Spinner mySpinner=(Spinner) findViewById(R.id.spinner1);
+                String mainCategory = mySpinner.getSelectedItem().toString();
+
+
+                int mainCategoryID = db.getMainCategoryByName(mainCategory).getId();
+
+                Product product = new Product(productName.getText().toString(), cost , mainCategoryID);
+
+                db.createProduct(product);
+
+                Intent myIntent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(myIntent);
+            }
+            // Perform action on click
+        });
+
     }
 
     @Override
@@ -53,7 +85,7 @@ public class addProductActivity extends Activity {
         List<MainCategory> categories = db.getAllMainCategories();
         List<String> categoriesstrings = new ArrayList<>();
         for (MainCategory category : categories) {
-            categoriesstrings.add(category.getCategoryName());
+            categoriesstrings.add(category.getMainCategory());
         }
         System.out.println("teeb midagi");
         Spinner my_spinner = (Spinner) findViewById(R.id.spinner1);
@@ -63,8 +95,6 @@ public class addProductActivity extends Activity {
         System.out.println("my_adapter");
         my_spinner.setAdapter(my_Adapter);
         System.out.println("settis 2ra");
-
-
-
     }
+
 }

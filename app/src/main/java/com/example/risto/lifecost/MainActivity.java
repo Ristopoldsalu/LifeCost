@@ -11,6 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import sqlite.helper.DatabaseHelper;
 import sqlite.model.MainCategory;
 
@@ -21,17 +28,47 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DatabaseHelper db = new DatabaseHelper(this);
-
-        MainCategory mainCategory = new MainCategory(0, "kartul");
-        db.createMainCategory(0, "kartul");
-        db.createMainCategory(1, "sibul");
-
-
+        /*
+        //Info that it works
         TextView tvName = (TextView)findViewById(R.id.textView);
         tvName.setText(db.getAllMainCategories().toString());
+        //Info that it works
+        TextView products = (TextView)findViewById(R.id.textView2);
+        products.setText((CharSequence) db.getAllProducts().toString());
+        */
+        //add 5 days of expenses
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateTime dt = new DateTime();
 
-        final Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        DateTime daysPast1 = dt.minusDays(0);
+        TextView day5 = (TextView)findViewById(R.id.day5);
+        double totalDailyCost1 = db.getDailyCost(daysPast1.toString("yyyy-MM-dd")).getTotalCost();
+        day5.setText(String.valueOf(totalDailyCost1));
+
+        DateTime daysPast2 = dt.minusDays(1);
+        TextView day4 = (TextView)findViewById(R.id.day4);
+        double totalDailyCost2 = db.getDailyCost(daysPast2.toString("yyyy-MM-dd")).getTotalCost();
+        day4.setText(String.valueOf(totalDailyCost2));
+
+        DateTime daysPast3 = dt.minusDays(2);
+        TextView day3 = (TextView)findViewById(R.id.day3);
+        double totalDailyCost3 = db.getDailyCost(daysPast3.toString("yyyy-MM-dd")).getTotalCost();
+        day3.setText(String.valueOf(totalDailyCost3));
+
+        DateTime daysPast4 = dt.minusDays(3);
+        TextView day2 = (TextView)findViewById(R.id.day2);
+        double totalDailyCost4 = db.getDailyCost(daysPast4.toString("yyyy-MM-dd")).getProducts().size();
+        day2.setText(String.valueOf(totalDailyCost4));
+
+        DateTime daysPast5 = dt.minusDays(4);
+        TextView day1 = (TextView)findViewById(R.id.day1);
+        double totalDailyCost5 = db.getDailyCost(daysPast5.toString("yyyy-MM-dd")).getProducts().size();
+        day1.setText(String.valueOf(totalDailyCost5));
+
+
+        //
+        final Button addProductButton = (Button) findViewById(R.id.button);
+        addProductButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.out.println("clicked");
                 Intent myIntent = new Intent(v.getContext(), addProductActivity.class);

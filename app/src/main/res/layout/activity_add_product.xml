@@ -20,7 +20,8 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
-                android:layout_column="0" />
+                android:layout_column="0"
+                android:text="Lisa toode" />
 
             <EditText
                 android:layout_width="150dp"
@@ -28,7 +29,8 @@
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/editText2"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:text="1.2" />
         </TableRow>
 
         <TableRow
@@ -41,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textStyle="bold"
-                android:text="Load DB values into Spinner"
+                android:text="Peamine kategooria"
                 >
             </TextView>
 
@@ -62,7 +64,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
+                android:text="SUBMIT"
                 android:id="@+id/button5"
                 android:layout_column="0" />
         </TableRow>

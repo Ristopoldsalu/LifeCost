@@ -12,4 +12,5 @@
     <string name="add_product4">Juurvili</string>
     <string name="add_product5">Hügieen</string>
     <string name="add_product6">Olme</string>
+    <string name="title_activity_single_day">SingleDayActivity</string>
 </resources>

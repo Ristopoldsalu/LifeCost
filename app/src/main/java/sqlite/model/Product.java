@@ -1,5 +1,9 @@
 package sqlite.model;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import sqlite.helper.DatabaseHelper;
+
 /**
  * Created by risto on 23.09.2015.
  */
@@ -9,23 +13,23 @@ public class Product {
     String name;
     Double price;
     String createdAt;
-    int subCategory;
+    int mainCategory_id;
 
     public Product() {
     }
 
-    public Product(String name, Double price, int subCategory) {
+    public Product(String name, Double price, int mainCategory) {
         this.name = name;
         this.price = price;
-        this.subCategory = subCategory;
+        this.mainCategory_id = mainCategory;
     }
 
-    public Product(int id, String createdAt, String name, Double price, int subCategory) {
+    public Product(int id, String createdAt, String name, Double price, int mainCategory_id) {
         this.id = id;
         this.createdAt = createdAt;
         this.name = name;
         this.price = price;
-        this.subCategory = subCategory;
+        this.mainCategory_id = mainCategory_id;
     }
 
     public int getId() {
@@ -60,11 +64,11 @@ public class Product {
         this.price = price;
     }
 
-    public int getSubCategory() {
-        return subCategory;
+    public int getMainCategory_id() {
+        return mainCategory_id;
     }
 
-    public void setSubCategory(int subCategory) {
-        this.subCategory = subCategory;
+    public void setMainCategory_id(int mainCategory_id) {
+        this.mainCategory_id = mainCategory_id;
     }
 }
