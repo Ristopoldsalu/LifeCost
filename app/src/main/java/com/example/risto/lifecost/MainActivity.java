@@ -39,31 +39,44 @@ public class MainActivity extends AppCompatActivity {
         //add 5 days of expenses
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         DateTime dt = new DateTime();
+        Log.e("TIIIIIMEMEEEEEE", dt.toString("yyyy-MM-dd  hh-mm-ss"));
+
+
 
         DateTime daysPast1 = dt.minusDays(0);
         TextView day5 = (TextView)findViewById(R.id.day5);
-        double totalDailyCost1 = db.getDailyCost(daysPast1.toString("yyyy-MM-dd")).getTotalCost();
+        double totalDailyCost1 = db.getDailyCost(dt.toString("yyyy-MM-dd")).getTotalCost();
         day5.setText(String.valueOf(totalDailyCost1));
+        day5.setOnClickListener(new MyOnClickListener(dt.toString("yyyy-MM-dd")));
+
+
 
         DateTime daysPast2 = dt.minusDays(1);
         TextView day4 = (TextView)findViewById(R.id.day4);
         double totalDailyCost2 = db.getDailyCost(daysPast2.toString("yyyy-MM-dd")).getTotalCost();
         day4.setText(String.valueOf(totalDailyCost2));
+        day4.setOnClickListener(new MyOnClickListener(daysPast2.toString("yyyy-MM-dd")));
 
         DateTime daysPast3 = dt.minusDays(2);
         TextView day3 = (TextView)findViewById(R.id.day3);
         double totalDailyCost3 = db.getDailyCost(daysPast3.toString("yyyy-MM-dd")).getTotalCost();
         day3.setText(String.valueOf(totalDailyCost3));
+        day4.setOnClickListener(new MyOnClickListener(daysPast3.toString("yyyy-MM-dd")));
+
 
         DateTime daysPast4 = dt.minusDays(3);
         TextView day2 = (TextView)findViewById(R.id.day2);
-        double totalDailyCost4 = db.getDailyCost(daysPast4.toString("yyyy-MM-dd")).getProducts().size();
+        double totalDailyCost4 = db.getDailyCost(daysPast4.toString("yyyy-MM-dd")).getTotalCost();
         day2.setText(String.valueOf(totalDailyCost4));
+        day4.setOnClickListener(new MyOnClickListener(daysPast4.toString("yyyy-MM-dd")));
+
 
         DateTime daysPast5 = dt.minusDays(4);
         TextView day1 = (TextView)findViewById(R.id.day1);
-        double totalDailyCost5 = db.getDailyCost(daysPast5.toString("yyyy-MM-dd")).getProducts().size();
+        double totalDailyCost5 = db.getDailyCost(daysPast5.toString("yyyy-MM-dd")).getTotalCost();
         day1.setText(String.valueOf(totalDailyCost5));
+        day4.setOnClickListener(new MyOnClickListener(daysPast5.toString("yyyy-MM-dd")));
+
 
 
         //
@@ -102,6 +115,22 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    //OnClickListener for details of one day
+    public class MyOnClickListener implements View.OnClickListener {
 
+        String costDate;
+        public MyOnClickListener(String costDate) {
+            this.costDate = costDate;
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent myIntent = new Intent(v.getContext(), SingleDayActivity.class);
+            myIntent.putExtra("date", costDate);
+            startActivity(myIntent);
+        }
+
+    };
 
 }

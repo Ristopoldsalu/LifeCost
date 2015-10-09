@@ -1,9 +1,19 @@
 package com.example.risto.lifecost;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.risto.resources.DailyCost;
+
+import java.util.ArrayList;
+
+import sqlite.helper.DatabaseHelper;
+import sqlite.model.Product;
 
 public class SingleDayActivity extends AppCompatActivity {
 
@@ -11,6 +21,19 @@ public class SingleDayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_day);
+        Intent intent = getIntent();
+        String dateTime = intent.getStringExtra("date");
+        DatabaseHelper db = new DatabaseHelper(this);
+        DailyCost dailyCost = db.getDailyCost(dateTime);
+        ArrayList<Product> products = dailyCost.getProducts();
+
+        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.lineLayout);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        for( int i = 0; i < products.size(); i++ ) {
+            TextView textView = new TextView(this);
+            textView.setText(products.get(i).getName() + " " + products.get(i).getPrice());
+            linearLayout.addView(textView);
+        }
     }
 
     @Override
