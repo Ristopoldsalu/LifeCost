@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //
-        final Button addProductButton = (Button) findViewById(R.id.button);
+        final ImageButton addProductButton = (ImageButton) findViewById(R.id.button);
         addProductButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.out.println("clicked");
@@ -131,6 +132,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(myIntent);
         }
 
-    };
+    }
 
 }

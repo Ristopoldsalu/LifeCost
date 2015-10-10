@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -10,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableLayout">
 
         <TableRow
             android:layout_width="match_parent"
@@ -21,7 +23,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
                 android:layout_column="0"
-                android:text="Lisa toode" />
+                android:text="Lisa toode"
+                android:editable="true"
+                android:elegantTextHeight="false"
+                android:enabled="true"
+                android:singleLine="false"
+                android:textIsSelectable="false"
+                android:textStyle="bold"
+                android:autoText="false"
+                android:focusable="true" />
 
             <EditText
                 android:layout_width="150dp"
@@ -30,7 +40,8 @@
                 android:ems="10"
                 android:id="@+id/editText2"
                 android:layout_column="1"
-                android:text="1.2" />
+                android:text="1.2"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow
@@ -42,9 +53,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textStyle="bold"
                 android:text="Peamine kategooria"
-                >
+                android:textStyle="bold">
             </TextView>
 
             <Spinner
@@ -53,7 +63,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true" />
+                android:layout_alignParentTop="true"
+                android:dropDownWidth="fill_parent"
+                android:layout_marginTop="10dp" />
 
         </TableRow>
 
@@ -61,13 +73,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SUBMIT"
-                android:id="@+id/button5"
-                android:layout_column="0" />
         </TableRow>
 
     </TableLayout>
+
+    <ImageButton
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:id="@+id/button5"
+        android:layout_column="0"
+        android:src="@drawable/lisa"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:layout_marginTop="109dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="false" />
 </RelativeLayout>

@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -17,6 +17,8 @@ import java.util.List;
 import sqlite.helper.DatabaseHelper;
 import sqlite.model.MainCategory;
 import sqlite.model.Product;
+
+import static com.example.risto.lifecost.R.id.editText;
 
 public class addProductActivity extends Activity {
 
@@ -31,27 +33,43 @@ public class addProductActivity extends Activity {
         fillData();
 
 
-        final Button button = (Button) findViewById(R.id.button5);
+        final ImageButton button = (ImageButton) findViewById(R.id.button5);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 System.out.println("clicked");
 
-                EditText productName = (EditText)findViewById(R.id.editText);
-                EditText costField = (EditText)findViewById(R.id.editText2);
+                EditText productName = (EditText) findViewById(editText);
+                EditText costField = (EditText) findViewById(R.id.editText2);
                 double cost = Double.parseDouble(costField.getText().toString());
-                Spinner mySpinner=(Spinner) findViewById(R.id.spinner1);
+                Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
                 String mainCategory = mySpinner.getSelectedItem().toString();
 
 
                 int mainCategoryID = db.getMainCategoryByName(mainCategory).getId();
 
-                Product product = new Product(productName.getText().toString(), cost , mainCategoryID);
+                Product product = new Product(productName.getText().toString(), cost, mainCategoryID);
 
                 db.createProduct(product);
 
                 Intent myIntent = new Intent(v.getContext(), MainActivity.class);
                 startActivity(myIntent);
+            }
+            // Perform action on click
+        });
+
+        final EditText edittext = (EditText) findViewById(R.id.editText);
+        edittext.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                edittext.setText("");
+            }
+            // Perform action on click
+        });
+
+        final EditText edittext2 = (EditText) findViewById(R.id.editText2);
+        edittext2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                edittext2.setText("");
             }
             // Perform action on click
         });
